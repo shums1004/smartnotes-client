@@ -1,10 +1,6 @@
 import useAuth from "../store/useAuth";
 
-
 const BASE_URL = import.meta.env.VITE_API_URL;
-
-
-
 
 export const signin = async (email, password) => {
  const res =  await fetch(`${BASE_URL}/api/login`, {
@@ -12,6 +8,7 @@ export const signin = async (email, password) => {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ email, password }),
   });
 
@@ -20,7 +17,7 @@ export const signin = async (email, password) => {
   }
   const data = await res.json();
   const {login} = useAuth.getState();
-  login(data.token, data.username);
+  login(data.username);
   
   return data;
   
@@ -32,6 +29,7 @@ export const signup = async (username, email, password) => {
     headers: {
       'Content-Type': 'application/json'
     },
+    credentials: 'include',
     body: JSON.stringify({ username, email, password }),
   });
 
@@ -40,7 +38,24 @@ export const signup = async (username, email, password) => {
   }
 
   const data = await response.json();
-  localStorage.setItem('token', data.token);
+  // localStorage.setItem('token', data.token);
   return data;
+}
+
+export const logout = async() => {
+  const response = await fetch(`${BASE_URL}/api/logout`, {
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+    });
+    
+    if (!response.ok) {
+      throw new Error('Logout failed');
+    }
+
+    return "Logged Out Succesfully"
+
 }
 

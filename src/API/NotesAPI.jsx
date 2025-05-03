@@ -3,13 +3,13 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 
 
 export const getNotes = async (query, page, limit) => {
-    const token = localStorage.getItem('token');
+    
     const response = await fetch(`${BASE_URL}/api/getnotes?search=${query}&page=${page}&limit=${limit}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
       },
+      credentials: 'include'
     });
 
     const data = await response.json();
@@ -18,14 +18,14 @@ export const getNotes = async (query, page, limit) => {
   }
   
   export const createNote = async (title, content, tags) => {
-    const token = localStorage.getItem('token');
-    console.log(title, content, tags);
+    
+    
     const response = await fetch(`${BASE_URL}/api/createnote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
       },
+      credentials: 'include',
       body: JSON.stringify({ title, content, tags }),
     });
   
@@ -37,15 +37,14 @@ export const getNotes = async (query, page, limit) => {
   }
 
 export const updateNote = async (id, note) => {
-    console.log(note);
-    const token = localStorage.getItem('token');
+    
+    
     const response = await fetch(`${BASE_URL}/api/editnote/${id}`, {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-
     },
+    credentials: 'include',
     body: JSON.stringify({note}),
     });
 
@@ -57,13 +56,13 @@ export const updateNote = async (id, note) => {
 }
 
 export const deleteNote = async (id) => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     const response = await fetch(`${BASE_URL}/api/deletenote/${id}`, {
     method: 'DELETE',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
     },
+    credentials: 'include'
     });
 
     if (!response.ok) {
@@ -73,13 +72,13 @@ export const deleteNote = async (id) => {
     return await response.json();
 }
 export const getNote = async (id) => {
-    const token = localStorage.getItem('token');
+    
     const response = await fetch(`${BASE_URL}/api/getnote/${id}`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
     },
+    credentials: 'include'
     });
 
     if (!response.ok) {

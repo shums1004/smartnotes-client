@@ -61,7 +61,7 @@ const handleTagKeyDown = (e) => {
 
   const handleSave = async () => {
     try {
-      console.log('Saving note:', editableNote);
+
       const updated = await updateNote(id, editableNote);
       setNote(updated);
       setIsEditing(false);

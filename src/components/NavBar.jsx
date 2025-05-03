@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../store/useAuth.jsx';
 import logo from '../assets/Logo.png'; // Adjust the path to your logo image
+import {logout} from '../API/UserAPI.jsx';
 
 
 export default function NavBar() {
@@ -9,6 +10,7 @@ export default function NavBar() {
 
     const handleLogout = () => {
     useAuth.getState().logout();
+    logout();
     navigate('/');
   };
 

@@ -4,8 +4,7 @@ const useAuth = create((set) => ({
     isLoggedIn: !!localStorage.getItem('token'),
     username:null,
   
-    login: (token, username) => {
-      localStorage.setItem('token', token);
+    login: ( username) => {
       localStorage.setItem('username', username);
       set({ isLoggedIn: true });
       set({ username: username });
@@ -14,7 +13,6 @@ const useAuth = create((set) => ({
 
   
     logout: () => {
-      localStorage.removeItem('token');
       localStorage.removeItem('username');
       set({ isLoggedIn: false });
     }
