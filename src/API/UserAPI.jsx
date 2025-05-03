@@ -56,5 +56,21 @@ export const logout = async() => {
 
     return "Logged Out Succesfully"
 
-}
+};
 
+export const fetchUser = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/auth/me`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    if (!res.ok) throw new Error('Not authenticated');
+    const data = await res.json();
+    const { login } = useAuth.getState();
+    login(data.username);
+  } catch(err) {
+    const { logout } = useAuth.getState();
+    logout(); 
+    console.log(err);
+  }
+};

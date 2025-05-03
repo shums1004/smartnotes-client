@@ -3,13 +3,14 @@ import useNotes from '../store/notesStore.jsx';
 import useAuth from '../store/useAuth.jsx';
 import { getNotes } from '../API/NotesAPI.jsx';
 import { useNavigate } from 'react-router-dom';
+import { fetchUser } from '../API/UserAPI.jsx';
 
 export default function Dashboard() {
   const { notes, setNotes } = useNotes();
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const { isLoggedIn, username } = useAuth();
+  const { username } = useAuth();
 
   const navigate = useNavigate();
   
@@ -32,11 +33,9 @@ export default function Dashboard() {
     }
   };
   useEffect(() => {
-    if (!isLoggedIn) {
-      navigate('/login');
-    }
-  }, [isLoggedIn]);
-  
+    fetchUser();
+  }, []);
+
   useEffect(() => {
     fetchNotes();
   }, [query, page]);
