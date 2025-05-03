@@ -19,7 +19,7 @@ export default function Dashboard() {
 
   const fetchNotes = async () => {
     try {
-      const res = await getNotes(query, page, 10); // limit = 10
+      const res = await getNotes(query, page, 6); 
       setNotes(res.notes);
       setTotalPages(res.totalPages);
     } catch (err) {
@@ -56,7 +56,7 @@ export default function Dashboard() {
         {/* <FaSearch className="text-gray-500 mr-2" /> */}
         <input
           type="text"
-          placeholder="Search notes by title or tag..."
+          placeholder="Search notes..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="w-full focus:outline-none bg-transparent"

@@ -1,8 +1,14 @@
 import useAuth from "../store/useAuth";
-const BaseUrl = 'http://localhost:5000/api';
+
+
+const BASE_URL = import.meta.env.VITE_API_URL;
+
+
+
 
 export const signin = async (email, password) => {
- const res =  await fetch(`${BaseUrl}/login`, {
+  console.log("base url = " + BASE_URL)
+ const res =  await fetch(`${BASE_URL}/api/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -23,7 +29,7 @@ export const signin = async (email, password) => {
 }
 
 export const signup = async (username, email, password) => {
-  const response = await fetch(`${BaseUrl}/register`, {
+  const response = await fetch(`${BASE_URL}/api/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

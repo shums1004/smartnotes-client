@@ -1,12 +1,49 @@
-# React + Vite
+# 📘 Smart Notes Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive frontend for the **Smart Notes** web application — a productivity tool that allows users to create, manage, and search notes with built-in AI-powered summarization and tagging.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ✍️ Create, edit, and delete notes
+- 🧠 AI-powered summarization & tag suggestions
+- 🔍 Full-text search with keyword highlighting
+- 🔐 Secure user authentication (JWT-based)
+- ⚡ Fast, responsive UI built with React & Tailwind CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React.js, Vite
+- **Styling:** Tailwind CSS
+- **State Management:** Zustand
+- **AI Integration:** OpenAI API 
+- **Routing:** React Router DOM
+
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v20 or later)
+- [npm](https://www.npmjs.com/) 
+
+Set the environment variable to the backend Base URL
+
+- create a .env file in the root folder 
+- add the base url like this: VITE_API_URL=https://smartnotes-server/
+- VITE_API_URL is important for the project to detect the URL
+
+
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/smart-notes-frontend.git
+cd smart-notes-frontend

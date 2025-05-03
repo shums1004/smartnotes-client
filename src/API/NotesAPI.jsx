@@ -1,10 +1,10 @@
 
-export const BaseUrl = 'http://localhost:5000/api';
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 
 export const getNotes = async (query, page, limit) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BaseUrl}/getnotes?search=${query}&page=${page}&limit=${limit}`, {
+    const response = await fetch(`${BASE_URL}/api/getnotes?search=${query}&page=${page}&limit=${limit}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ export const getNotes = async (query, page, limit) => {
   export const createNote = async (title, content, tags) => {
     const token = localStorage.getItem('token');
     console.log(title, content, tags);
-    const response = await fetch(`${BaseUrl}/createnote`, {
+    const response = await fetch(`${BASE_URL}/api/createnote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export const getNotes = async (query, page, limit) => {
 export const updateNote = async (id, note) => {
     console.log(note);
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BaseUrl}/editnote/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/editnote/${id}`, {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export const updateNote = async (id, note) => {
 
 export const deleteNote = async (id) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BaseUrl}/deletenote/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/deletenote/${id}`, {
     method: 'DELETE',
     headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const deleteNote = async (id) => {
 }
 export const getNote = async (id) => {
     const token = localStorage.getItem('token');
-    const response = await fetch(`${BaseUrl}/getnote/${id}`, {
+    const response = await fetch(`${BASE_URL}/api/getnote/${id}`, {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
