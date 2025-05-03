@@ -1,11 +1,10 @@
 import {create} from 'zustand';
 
 const useAuth = create((set) => ({
-    isLoggedIn: !!localStorage.getItem('token'),
+    isLoggedIn: false,
     username:null,
   
     login: ( username) => {
-      localStorage.setItem('username', username);
       set({ isLoggedIn: true });
       set({ username: username });
     },
@@ -13,7 +12,7 @@ const useAuth = create((set) => ({
 
   
     logout: () => {
-      localStorage.removeItem('username');
+      set({username:null});
       set({ isLoggedIn: false });
     }
   }));

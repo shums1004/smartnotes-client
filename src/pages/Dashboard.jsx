@@ -9,10 +9,10 @@ export default function Dashboard() {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, username } = useAuth();
 
   const navigate = useNavigate();
-  const username = localStorage.getItem('username');
+  
 
   const fetchNotes = async () => {
     try {
