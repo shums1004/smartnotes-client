@@ -4,15 +4,12 @@ import useAuth from '../store/useAuth.jsx';
 import { getNotes } from '../API/NotesAPI.jsx';
 import { useNavigate } from 'react-router-dom';
 
-
-
 export default function Dashboard() {
   const { notes, setNotes } = useNotes();
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { isLoggedIn } = useAuth();
-//   const [selectedNote, setSelectedNote] = useState(null);
 
   const navigate = useNavigate();
   const username = localStorage.getItem('username');
