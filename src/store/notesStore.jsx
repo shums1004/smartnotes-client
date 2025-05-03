@@ -11,6 +11,7 @@ const useNotes = create((set) => ({
       set((state) => ({
         notes: [note, ...state.notes],
       })),
+      
   
     removeNote: (id) =>
       set((state) => ({
