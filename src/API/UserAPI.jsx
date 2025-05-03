@@ -18,7 +18,6 @@ export const signin = async (email, password) => {
   const data = await res.json();
   const {login} = useAuth.getState();
   login(data.username);
-  
   return data;
   
 }

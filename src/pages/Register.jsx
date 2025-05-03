@@ -46,7 +46,7 @@ export default function Register(){
         navigate('/login');
         window.alert('Registration successful! Please log in.');
       } catch (err) {
-        setError(err.response?.data?.message || 'Registration failed');
+        setError(err.response.data.message || 'Registration failed');
         console.error('Registration error:', error);
       }
     };

@@ -31,10 +31,15 @@ export default function Dashboard() {
       console.error('Failed to load note:', err);
     }
   };
-
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    }
+  }, [isLoggedIn]);
+  
   useEffect(() => {
     fetchNotes();
-  }, [query, page, isLoggedIn]);
+  }, [query, page]);
 
   return (
     <div className="p-6 max-w-5xl mx-auto">

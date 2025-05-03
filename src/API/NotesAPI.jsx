@@ -12,6 +12,8 @@ export const getNotes = async (query, page, limit) => {
       credentials: 'include'
     });
 
+    if(!response.ok) throw new Error('Unaothorized');
+
     const data = await response.json();
     
     return data;
