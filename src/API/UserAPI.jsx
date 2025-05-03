@@ -72,5 +72,8 @@ export const fetchUser = async () => {
     const { logout } = useAuth.getState();
     logout(); 
     console.log(err);
+  } finally{
+    const {finishLoading} = useAuth.getState();
+    finishLoading();
   }
 };

@@ -10,7 +10,7 @@ export default function Dashboard() {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const { username } = useAuth();
+  const { username, loading, isLoggedIn } = useAuth();
 
   const navigate = useNavigate();
   
@@ -32,16 +32,35 @@ export default function Dashboard() {
       console.error('Failed to load note:', err);
     }
   };
+
   useEffect(() => {
-    fetchUser();
+    const checkAuth = async () => {
+        await fetchUser(); // wait for it to complete
+      }
+    checkAuth();
   }, []);
 
   useEffect(() => {
-    fetchNotes();
-  }, [query, page]);
+    const getNotes = async() => {
+    if (!loading && isLoggedIn) {
+      await fetchNotes();
+    }
+  }
+  getNotes();
+  }, [query, page, loading, isLoggedIn]);
+
+  if(loading){
+    return <div className="p-6 text-center">Loading...</div>;
+  }
+
+  if (!isLoggedIn) {
+    return <div className="p-6 text-center">Unauthorized. Please log in.</div>;
+  }
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
+
+      
         <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-700"> {username}'s Notes</h1>
         <button
