@@ -11,9 +11,36 @@ export default function Register(){
     const navigate = useNavigate();
 
 
+    const validateInputs = () => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+      if (!username.trim()) {
+        return "Username is required.";
+      }
+  
+      if (!emailRegex.test(email)) {
+        window.alert("Enter a Valid Email Address");
+        return "Please enter a valid email address.";
+      }
+  
+      if (password.length < 6) {
+        window.alert("Password Should be atleast 6 character long");
+        return "Password must be at least 6 characters.";
+      }
+  
+      return null;
+    };
+
   const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
+
+    const validationError = validateInputs();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
     try {
         await signup(username, email, password);
         navigate('/login');

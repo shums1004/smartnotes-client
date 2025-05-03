@@ -18,6 +18,11 @@ export default function Login(){
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const validationError = validateInputs();
+        if (validationError) {
+        setError(validationError);
+        return;
+        }
         try {
         await signin(email, password);
         navigate("/");
@@ -25,6 +30,22 @@ export default function Login(){
         setError(err.message);
         }
     };
+
+    const validateInputs = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (!emailRegex.test(email)) {
+            window.alert("Enter a Valid Email Address");
+            return "Please enter a valid email address.";
+        }
+    
+        if (password.length < 6) {
+            window.alert("Password Should be atleast 6 character long");
+            return "Password must be at least 6 characters long.";
+        }
+    
+        return null;
+      };
     
     return (
         <div className="items-center justify-center px-4 py-12 flex flex-col gap-10 min-h-screen w-full">
