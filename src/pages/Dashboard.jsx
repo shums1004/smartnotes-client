@@ -33,12 +33,12 @@ export default function Dashboard() {
     }
   };
 
-  useEffect(() => {
-    const checkAuth = async () => {
-        await fetchUser(); // wait for it to complete
-      }
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //       await fetchUser(); // wait for it to complete
+  //     }
+  //   checkAuth();
+  // }, []);
 
   useEffect(() => {
     const getNotes = async() => {
