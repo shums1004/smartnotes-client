@@ -3,7 +3,7 @@ import useNotes from '../store/notesStore.jsx';
 import useAuth from '../store/useAuth.jsx';
 import { getNotes } from '../API/NotesAPI.jsx';
 import { useNavigate } from 'react-router-dom';
-import { fetchUser } from '../API/UserAPI.jsx';
+
 
 export default function Dashboard() {
   const { notes, setNotes } = useNotes();
@@ -33,21 +33,13 @@ export default function Dashboard() {
     }
   };
 
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //       await fetchUser(); // wait for it to complete
-  //     }
-  //   checkAuth();
-  // }, []);
-
+ 
   useEffect(() => {
-    const getNotes = async() => {
     if (!loading && isLoggedIn) {
-      await fetchNotes();
+       fetchNotes();
     }
-  }
-  getNotes();
-  }, [query, page, loading, isLoggedIn]);
+
+  }, [query, page, loading, isLoggedIn, notes]);
 
   if(loading){
     return <div className="p-6 text-center">Loading...</div>;
